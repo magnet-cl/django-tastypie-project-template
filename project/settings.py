@@ -216,6 +216,7 @@ INSTALLED_APPS = (
     'users',
     'bootstrap_admin',
     'django.contrib.admin',
+    'api',
 )
 # Set the apps that are installed locally
 try:
