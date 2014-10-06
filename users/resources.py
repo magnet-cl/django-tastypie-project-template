@@ -62,16 +62,11 @@ class UserResource(MultipartResource):
         readonly=True,
         help_text='When the user registered',
     )
-    points = fields.IntegerField(
-        'points',
-        readonly=True,
-        help_text="The ammount of points the user has",
-    )
 
     class Meta(MultipartResource.Meta):
         """ Metadata for the user resource """
         queryset = User.objects.all()
-        resource_name = 'user'
+        resource_name = 'users'
         allowed_methods = ['get', 'post', 'patch']
         authentication = MethodWardAuthentication(
             annonymus_allowed_methods=['post']
@@ -193,7 +188,7 @@ class UserResource(MultipartResource):
                 content_type=request.META['CONTENT_TYPE'])
             raise ImmediateHttpResponse(response=response)
 
-        user.send_recover_password_email()
+        user.send_recover_password_email(request)
 
         return self.create_response(request, {'success': True})
 

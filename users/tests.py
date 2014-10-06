@@ -15,10 +15,10 @@ from base.tests import BaseTestCase
 # standard library
 
 
-class StatusResourceTestCase(BaseResourceTestCase):
+class UserResourceTestCase(BaseResourceTestCase):
 
     def setUp(self):
-        super(StatusResourceTestCase, self).setUp()
+        super(UserResourceTestCase, self).setUp()
 
     def test_recover_password(self):
 

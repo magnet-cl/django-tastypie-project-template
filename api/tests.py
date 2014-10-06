@@ -9,7 +9,6 @@ from tastypie.test import ResourceTestCase
 from tastypie.test import TestApiClient
 
 from users.resources import UserResource
-from locations.resources import LocationResource
 
 # tests
 from base.tests import BaseTestCase
@@ -21,20 +20,12 @@ import json
 class BaseResourceTestCase(BaseTestCase, ResourceTestCase):
 
     def setUp(self):
-        super(BaseResourceTestCase, self).setUp()
         self.user_resource = UserResource()
         self.user_resource_uri = self.user_resource.get_resource_uri()
 
         self.client = TestApiClient()
 
-        # login
-        self.password = 'superpassword'
-        self.user.set_password(self.password)
-        self.user.save()
-        self.login(self.user.email, self.password)
-
-        self.location_resource = LocationResource()
-        self.location_resource_uri = self.location_resource.get_resource_uri()
+        super(BaseResourceTestCase, self).setUp()
 
     def login(self, email=None, password=None):
         if email is None:
